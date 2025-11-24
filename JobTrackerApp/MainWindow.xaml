@@ -1,0 +1,200 @@
+﻿<Window x:Class="JobTrackerApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Add Company - Job Application Tracker" Height="650" Width="900"
+        WindowStartupLocation="CenterScreen"
+        Background="#0a0e27">
+
+    <Window.Resources>
+        <Style x:Key="ModernButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#6366f1"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="20,10"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="8"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#4f46e5"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="ModernTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Background" Value="#1e293b"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#334155"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="12,10"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="6">
+                            <ScrollViewer x:Name="PART_ContentHost" 
+                                        Padding="{TemplateBinding Padding}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ModernComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Background" Value="#1e293b"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#334155"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="12,10"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,30">
+            <TextBlock Text="Job Application Tracker" 
+                       FontSize="32" FontWeight="Bold" Foreground="White"/>
+            <TextBlock Text="Add companies you want to apply to" 
+                       FontSize="14" Foreground="#94a3b8" Margin="0,5,0,0"/>
+        </StackPanel>
+
+        <Border Grid.Row="1" Background="#1e293b" CornerRadius="12" Padding="30">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20" ShadowDepth="0" Color="#6366f1" Opacity="0.3"/>
+            </Border.Effect>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,0,15,20">
+                        <TextBlock Text="Company Name *" Foreground="#94a3b8" Margin="0,0,0,8" FontWeight="SemiBold"/>
+                        <TextBox x:Name="txtCompanyName" Style="{StaticResource ModernTextBoxStyle}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="0" Grid.Column="1" Margin="15,0,0,20">
+                        <TextBlock Text="Phone Number" Foreground="#94a3b8" Margin="0,0,0,8" FontWeight="SemiBold"/>
+                        <TextBox x:Name="txtPhone" Style="{StaticResource ModernTextBoxStyle}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,15,20">
+                        <TextBlock Text="Email" Foreground="#94a3b8" Margin="0,0,0,8" FontWeight="SemiBold"/>
+                        <TextBox x:Name="txtEmail" Style="{StaticResource ModernTextBoxStyle}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Grid.Column="1" Margin="15,0,0,20">
+                        <TextBlock Text="Location" Foreground="#94a3b8" Margin="0,0,0,8" FontWeight="SemiBold"/>
+                        <TextBox x:Name="txtLocation" Style="{StaticResource ModernTextBoxStyle}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,0,15,20">
+                        <TextBlock Text="Technology Stack" Foreground="#94a3b8" Margin="0,0,0,8" FontWeight="SemiBold"/>
+                        <TextBox x:Name="txtTechStack" Style="{StaticResource ModernTextBoxStyle}" 
+                                 ToolTip="e.g., C#, .NET, WPF, SQL Server"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2" Grid.Column="1" Margin="15,0,0,20">
+                        <TextBlock Text="Status *" Foreground="#94a3b8" Margin="0,0,0,8" FontWeight="SemiBold"/>
+                        <ComboBox x:Name="cmbStatus" Style="{StaticResource ModernComboBoxStyle}">
+                            <ComboBoxItem Content="Not Called" IsSelected="True"/>
+                            <ComboBoxItem Content="Called"/>
+                            <ComboBoxItem Content="Interview Scheduled"/>
+                            <ComboBoxItem Content="Rejected"/>
+                            <ComboBoxItem Content="Offer Received"/>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+                        <TextBlock Text="Remarks / Notes" Foreground="#94a3b8" Margin="0,0,0,8" FontWeight="SemiBold"/>
+                        <TextBox x:Name="txtRemarks" Style="{StaticResource ModernTextBoxStyle}" 
+                                 Height="100" TextWrapping="Wrap" AcceptsReturn="True"
+                                 VerticalScrollBarVisibility="Auto"/>
+                    </StackPanel>
+                </Grid>
+            </ScrollViewer>
+        </Border>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,25,0,0">
+            <Button x:Name="btnAdd" Content="💼 Add Company" 
+                    Style="{StaticResource ModernButtonStyle}" 
+                    Click="BtnAdd_Click" 
+                    Padding="30,12"
+                    FontSize="15"
+                    Margin="0,0,15,0"/>
+            <Button x:Name="btnClear" Content="Clear Form" 
+                    Style="{StaticResource ModernButtonStyle}" 
+                    Click="BtnClear_Click"
+                    Background="#64748b"
+                    Padding="30,12"
+                    FontSize="15"/>
+        </StackPanel>
+
+        <Border Grid.Row="3" Background="#1e293b" CornerRadius="12" Padding="25" Margin="0,25,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left">
+                    <StackPanel Margin="0,0,40,0">
+                        <TextBlock Text="Total Companies" Foreground="#94a3b8" FontSize="11"/>
+                        <TextBlock x:Name="txtTotalCompanies" Text="0" Foreground="White" FontSize="28" FontWeight="Bold"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="0,0,40,0">
+                        <TextBlock Text="Not Called" Foreground="#94a3b8" FontSize="11"/>
+                        <TextBlock x:Name="txtNotCalled" Text="0" Foreground="#f59e0b" FontSize="28" FontWeight="Bold"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="0,0,40,0">
+                        <TextBlock Text="In Progress" Foreground="#94a3b8" FontSize="11"/>
+                        <TextBlock x:Name="txtCalled" Text="0" Foreground="#3b82f6" FontSize="28" FontWeight="Bold"/>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <TextBlock Text="Offers" Foreground="#94a3b8" FontSize="11"/>
+                        <TextBlock x:Name="txtOffers" Text="0" Foreground="#10b981" FontSize="28" FontWeight="Bold"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <Button Grid.Column="1" Content="📋 View All Companies" 
+                        Style="{StaticResource ModernButtonStyle}"
+                        Click="BtnViewAll_Click" 
+                        Background="#8b5cf6"
+                        Padding="25,12"
+                        FontSize="15"
+                        VerticalAlignment="Center"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
