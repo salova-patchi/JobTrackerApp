@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="View Companies - Job Application Tracker" Height="900" Width="1600"
         WindowStartupLocation="CenterScreen"
+       WindowState="Maximized"
         Background="#0a0e27">
 
     <Window.Resources>
@@ -60,6 +61,32 @@
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Padding" Value="12,10"/>
             <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <!-- Style for ComboBox Items (Dropdown Items) -->
+        <Style TargetType="ComboBoxItem">
+            <Setter Property="Background" Value="#1e293b"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBoxItem">
+                        <Border x:Name="Border" 
+                                Background="{TemplateBinding Background}"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsHighlighted" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#4f46e5"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#6366f1"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
         <Style x:Key="ModernDataGridStyle" TargetType="DataGrid">

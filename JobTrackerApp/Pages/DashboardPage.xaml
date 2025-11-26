@@ -1,0 +1,190 @@
+﻿<Page x:Class="JobTrackerApp.DashboardPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="#0a0e27">
+
+    <Page.Resources>
+        <Style x:Key="StatCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="#1e293b"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="25"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+    </Page.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="40">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+            <StackPanel Grid.Row="0" Margin="0,0,0,30">
+                <TextBlock Text="Dashboard" 
+                           FontSize="36" 
+                           FontWeight="Bold" 
+                           Foreground="White"/>
+                <TextBlock Text="Overview of your job applications" 
+                           FontSize="14" 
+                           Foreground="#94a3b8" 
+                           Margin="0,5,0,0"/>
+            </StackPanel>
+
+            <!-- Statistics Cards -->
+            <Grid Grid.Row="1" Margin="0,0,0,30">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Total Companies Card -->
+                <Border Grid.Column="0" Style="{StaticResource StatCardStyle}">
+                    <StackPanel>
+                        <TextBlock Text="📊 Total Companies" 
+                                   Foreground="#94a3b8" 
+                                   FontSize="13" 
+                                   Margin="0,0,0,10"/>
+                        <TextBlock x:Name="txtTotalCompanies" 
+                                   Text="0" 
+                                   Foreground="White" 
+                                   FontSize="42" 
+                                   FontWeight="Bold"/>
+                        <TextBlock Text="All applications tracked" 
+                                   Foreground="#64748b" 
+                                   FontSize="11" 
+                                   Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Not Called Card -->
+                <Border Grid.Column="1" Style="{StaticResource StatCardStyle}">
+                    <StackPanel>
+                        <TextBlock Text="⏳ Not Called" 
+                                   Foreground="#94a3b8" 
+                                   FontSize="13" 
+                                   Margin="0,0,0,10"/>
+                        <TextBlock x:Name="txtNotCalled" 
+                                   Text="0" 
+                                   Foreground="#f59e0b" 
+                                   FontSize="42" 
+                                   FontWeight="Bold"/>
+                        <TextBlock Text="Waiting for response" 
+                                   Foreground="#64748b" 
+                                   FontSize="11" 
+                                   Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- In Progress Card -->
+                <Border Grid.Column="2" Style="{StaticResource StatCardStyle}">
+                    <StackPanel>
+                        <TextBlock Text="🔄 In Progress" 
+                                   Foreground="#94a3b8" 
+                                   FontSize="13" 
+                                   Margin="0,0,0,10"/>
+                        <TextBlock x:Name="txtInProgress" 
+                                   Text="0" 
+                                   Foreground="#3b82f6" 
+                                   FontSize="42" 
+                                   FontWeight="Bold"/>
+                        <TextBlock Text="Active applications" 
+                                   Foreground="#64748b" 
+                                   FontSize="11" 
+                                   Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Offers Card -->
+                <Border Grid.Column="3" Style="{StaticResource StatCardStyle}">
+                    <StackPanel>
+                        <TextBlock Text="🎉 Offers Received" 
+                                   Foreground="#94a3b8" 
+                                   FontSize="13" 
+                                   Margin="0,0,0,10"/>
+                        <TextBlock x:Name="txtOffers" 
+                                   Text="0" 
+                                   Foreground="#10b981" 
+                                   FontSize="42" 
+                                   FontWeight="Bold"/>
+                        <TextBlock Text="Success!" 
+                                   Foreground="#64748b" 
+                                   FontSize="11" 
+                                   Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Recent Activity -->
+            <Border Grid.Row="2" 
+                    Background="#1e293b" 
+                    CornerRadius="12" 
+                    Padding="30">
+                <StackPanel>
+                    <TextBlock Text="📌 Recent Companies" 
+                               FontSize="20" 
+                               FontWeight="Bold" 
+                               Foreground="White" 
+                               Margin="0,0,0,20"/>
+
+                    <ListView x:Name="lstRecentCompanies"
+                              Background="Transparent"
+                              BorderThickness="0"
+                              Foreground="White"
+                              Height="300">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="#0f172a" 
+                                        CornerRadius="8" 
+                                        Padding="15" 
+                                        Margin="0,5">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock Text="{Binding CompanyName}" 
+                                                       Foreground="White" 
+                                                       FontWeight="Bold" 
+                                                       FontSize="15"/>
+                                            <TextBlock Text="{Binding Location}" 
+                                                       Foreground="#94a3b8" 
+                                                       FontSize="12" 
+                                                       Margin="0,3,0,0"/>
+                                        </StackPanel>
+
+                                        <TextBlock Grid.Column="1" 
+                                                   Text="{Binding TechStack}" 
+                                                   Foreground="#64748b" 
+                                                   FontSize="12" 
+                                                   VerticalAlignment="Center"/>
+
+                                        <TextBlock Grid.Column="2" 
+                                                   Text="{Binding Status}" 
+                                                   Foreground="#6366f1" 
+                                                   FontSize="12" 
+                                                   VerticalAlignment="Center"/>
+
+                                        <TextBlock Grid.Column="3" 
+                                                   Text="{Binding DateAdded, StringFormat='dd/MM/yyyy'}" 
+                                                   Foreground="#94a3b8" 
+                                                   FontSize="12" 
+                                                   HorizontalAlignment="Right" 
+                                                   VerticalAlignment="Center"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</Page>
